@@ -1,2 +1,2 @@
-FROM gcr.io/google_containers/kube-dnsmasq-amd64:1.14.7
+FROM gcr.io/google_containers/kube-dnsmasq-amd64:1.4
 MAINTAINER shayu
