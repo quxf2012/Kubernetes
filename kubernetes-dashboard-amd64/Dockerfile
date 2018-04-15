@@ -1,2 +1,2 @@
-FROM gcr.io/google_containers/kube-dashboard-amd64:v1.10.0
+FROM gcr.io/google_containers/kube-dashboard-amd64:v1.8.3
 MAINTAINER shayu
