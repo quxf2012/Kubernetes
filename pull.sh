@@ -18,3 +18,9 @@ for image in ${images[@]};do
 	docker tag quxf2012/$image gcr.io/google_containers/$image 
 	docker tag quxf2012/$image k8s.gcr.io/$image 
 done
+
+
+#down quay.io/coreos/flannel:v0.10.0-amd64
+
+docker pull/kube-flannel:v0.10.0-amd64
+docker tag pull/kube-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64
