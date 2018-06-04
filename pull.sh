@@ -22,5 +22,5 @@ done
 
 #down quay.io/coreos/flannel:v0.10.0-amd64
 
-docker pull/kube-flannel:v0.10.0-amd64
-docker tag pull/kube-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64
+docker pull quxf2012/kube-flannel:v0.10.0-amd64
+docker tag quxf2012/kube-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64
