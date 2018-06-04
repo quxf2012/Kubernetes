@@ -16,6 +16,7 @@ for image in ${images[@]};do
     echo $image
 	docker pull quxf2012/$image
 	docker tag quxf2012/$image gcr.io/google_containers/$image 
+    #k8s.gcr.io in use
 	docker tag quxf2012/$image k8s.gcr.io/$image 
 done
 
