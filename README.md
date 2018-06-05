@@ -76,7 +76,7 @@ cd Kubernetes
 bash pull_1.10.0.sh
 ```
 
-### 修改kubelet cgroup驱动和docker一致
+### 修改kubelet cgroup驱动和docker一致,没有则跳过
 ```bash
 docker info|grep 'Cgroup Driver'
 vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 
@@ -88,14 +88,10 @@ vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
 ## 使用kueadm安装并配置kubernetes
 
-### 安装kubernetes
+### 安装kubernetes,网段不要改
     kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16
 ![创建成功](https://raw.githubusercontent.com/quxf2012/Kubernetes/master/20180605105559.png)
 
-### 安装pod网络插件(Installing a pod network)
-```bash
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
-```
 
 ### 配置访问k8s
 #### root用户
@@ -104,7 +100,14 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Docume
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
-    
+
+### 安装pod网络插件(Installing a pod network)
+该插件需要kubeadm init 时指定 -pod-network-cidr=10.244.0.0/16
+```bash
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
+```
+
+
 
 ### 查看集群创建状态
 kubectl get pods --all-namespaces
