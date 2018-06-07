@@ -84,6 +84,10 @@ vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
 
 ### 调整系统参数
+    vim /etc/sysctl.conf
+    net.bridge.bridge-nf-call-iptables=1
+    
+    sysctl -p
     sysctl net.bridge.bridge-nf-call-iptables=1
 
 ## 使用kueadm安装并配置kubernetes
