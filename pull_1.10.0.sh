@@ -17,11 +17,11 @@ for image in ${images[@]};do
     docker pull quxf2012/$image
     #docker tag quxf2012/$image gcr.io/google_containers/$image 
     #k8s.gcr.io in use,创建标签成功后删除,临时标签
-    docker tag quxf2012/$image k8s.gcr.io/$image||docker rmi quxf2012/$image
+    docker tag quxf2012/$image k8s.gcr.io/$image && docker rmi quxf2012/$image
 done
 
 
 #down quay.io/coreos/flannel:v0.10.0-amd64
 
 docker pull quxf2012/kube-flannel:v0.10.0-amd64
-docker tag quxf2012/kube-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64
+docker tag quxf2012/kube-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64 && docker rmi quxf2012/kube-flannel:v0.10.0-amd64

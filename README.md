@@ -28,7 +28,7 @@ EOF
 curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg |apt-key add -
 add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 #ubuntu18.04暂时没有源,直接使用16.04的.
-cat<< EOF >/etc/apt/sources.list.d/docker.list
+cat<< EOF > /etc/apt/sources.list.d/docker.list
 deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial stable
 EOF
 ```
@@ -84,11 +84,8 @@ vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
 
 ### 调整系统参数
-    vim /etc/sysctl.conf
-    net.bridge.bridge-nf-call-iptables=1
-    
+    grep '^net.bridge.bridge-nf-call-iptables' /etc/sysctl.conf || echo 'net.bridge.bridge-nf-call-iptables=1' >>/etc/sysctl.conf 
     sysctl -p
-    sysctl net.bridge.bridge-nf-call-iptables=1
 
 ## 使用kueadm安装并配置kubernetes
 
