@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      name: db-demo
+      labels:
+        app: db-demo
+        tier: frontend
+    spec:
+      containers:
+      - name: mysql
+        image: percona:5.7.22
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "123456"
+      - name: redis
+        image: redis:alpine
+
+      

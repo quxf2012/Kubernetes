@@ -1,7 +1,8 @@
 [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)官方文档
 
-# 配置软件源
 
+# 配置软件源
+  最好用centos7装,ubuntu容易出错
 ##  centos
 ```bash
 [kubernetes]
@@ -123,7 +124,9 @@ kubectl get pods --all-namespaces
 
 
 	
-
+## 安装 dashboard
+    https://github.com/kubernetes/dashboard
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 	
 	
 	
