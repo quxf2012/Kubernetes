@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: nginx-frontend
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+        tier: nginx-frontend
+    spec:
+      containers:
+      - name: nginx
+        image: openresty/openresty:alpine
+        imagePullPolicy: IfNotPresent
+
+      

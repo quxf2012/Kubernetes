@@ -38,3 +38,19 @@ kubectl get pods  --namespace=development alpine  -o yaml
 
 #进入pods的容器中
 kubectl exec -it myweb-h4hd4 -c myweb sh
+
+#编辑名称问myweb的rc
+kubectl edit rc/myweb
+kubect edit deployment/nginx-deployment
+kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1
+kubectl set image rc/myweb myweb=openresty/openresty:latest
+
+
+
+#滚动升级 deployment
+kubectl create -f myweb-deployment.yml  #创建deploy
+kubectl set image deployment/nginx-deployment nginx=nginx:alpine  #修改nginx的image
+kubectl get pods   #查看
+kubectl get deployment  #查看状态
+kubectl describe deploy/myweb   #查看更新过程
+kubectl get rs  #查看rs,更新完成旧的rs数量为0
