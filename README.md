@@ -12,6 +12,7 @@ enabled=1
 gpgcheck=0
 
 #docker
+yum -y install yum-utils 
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 ## ubuntu

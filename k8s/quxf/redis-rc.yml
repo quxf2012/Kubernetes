@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis-rc
+spec:
+  replicas: 1
+  selector:
+    app: redis6379
+  template:
+    metadata:
+      labels:
+        app: redis6379
+    spec:
+      containers:
+      - name: redis6379
+        image: redis:alpine
+        ports:
+          - containerPort: 6379
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+      volumes:
+      - name: redis-data
+        hostPath: 
+          path: /data/data/redis
+  
