@@ -75,7 +75,7 @@ apt-get install docker-ce=17.03.0~ce-0~ubuntu-xenial #安装指定版本的docke
 ```bash
 git clone git@github.com:quxf2012/Kubernetes.git
 cd Kubernetes
-bash pull_1.10.0.sh
+bash pull_1.11.1.sh
 ```
 
 ### 修改kubelet cgroup驱动和docker一致,没有则跳过
@@ -92,7 +92,7 @@ vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ## 使用kueadm安装并配置kubernetes
 
 ### 安装kubernetes,网段不要改
-    kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16
+    kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16
 ![创建成功](https://raw.githubusercontent.com/quxf2012/Kubernetes/master/20180605105559.png)
 
 
