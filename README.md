@@ -12,7 +12,7 @@ enabled=1
 gpgcheck=0
 
 #docker
-yum -y install yum-utils 
+yum -y install yum-utils
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 ## ubuntu
@@ -34,7 +34,7 @@ cat<< EOF > /etc/apt/sources.list.d/docker.list
 deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial stable
 EOF
 ```
-	
+
 
 # 安装docker和kubeadm
 
@@ -52,7 +52,7 @@ rpm -i https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/stable/Package
 ```
 
 ## ubuntu
-	
+
 ```bash
 apt-get update
 
@@ -64,10 +64,10 @@ apt-cache madison docker-ce #查看版本库中的版本
 apt-get install docker-ce=17.03.0~ce-0~ubuntu-xenial #安装指定版本的docker-ce
 
 ```
-	
-	
-	
-	
+
+
+
+
 # 使用kubeadm安装kubernetes
 
 ## 准备工作
@@ -81,12 +81,12 @@ bash pull_1.11.1.sh
 ### 修改kubelet cgroup驱动和docker一致,没有则跳过
 ```bash
 docker info|grep 'Cgroup Driver'
-vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 
+vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
     --cgroup-driver=
 ```
 
 ### 调整系统参数
-    grep '^net.bridge.bridge-nf-call-iptables' /etc/sysctl.conf || echo 'net.bridge.bridge-nf-call-iptables=1' >>/etc/sysctl.conf 
+    grep '^net.bridge.bridge-nf-call-iptables' /etc/sysctl.conf || echo 'net.bridge.bridge-nf-call-iptables=1' >>/etc/sysctl.conf
     sysctl -p
 
 ## 使用kueadm安装并配置kubernetes
@@ -107,7 +107,7 @@ vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 ### 安装pod网络插件(Installing a pod network)
 该插件需要kubeadm init 时指定 -pod-network-cidr=10.244.0.0/16
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 
@@ -124,13 +124,13 @@ kubectl get pods --all-namespaces
     tail -f /var/log/messages   #centos
 
 
-	
+
 ## 安装 dashboard
     https://github.com/kubernetes/dashboard
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
