@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: mysql-cmdb-rc
+  name: mysql-quxf-rc
 spec:
   replicas: 1
   selector:
-    app: mysql-cmdb
+    app: mysql-quxf
   template:
     metadata:
       labels:
-        app: mysql-cmdb
+        app: mysql-quxf
     spec:
       volumes:
       - name: mysql-data
@@ -20,7 +20,7 @@ spec:
           path: /code/docker/my.cnf
       containers:
       - name: mysql
-        image:  percona:5.7.21
+        image:  percona:5.7.25
         ports:
         - containerPort: 3306
         env:
