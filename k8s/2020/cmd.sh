@@ -44,3 +44,73 @@ kubectl delete deployment/nginx-deployment
 #satefulSet
 kubectl get statefulset.apps
 kubectl get statefulset
+
+
+#Job & CronJob
+kubectl get cronjob --watch
+kubectl delete cronjob pi
+kubectl get job --watch
+
+
+
+#
+kubectl run nginx --image nginx   #废弃
+#创建一个deployment 运行nginx
+kubectl create deployment nginx --image nginx
+
+#比较当前配置与系统中的差异
+kubectl diff -f deployment-20200119.yml
+
+kubectl diff -R -f configs/
+kubectl apply -R -f configs/
+
+kubectl get namespace
+kubectl create namespace  namespace-1
+#删除命名空间,并删除该命名空间中的所有东西
+kubectl delete namespaces namespace-1
+#配置查看
+kubectl config view
+kubect config set-context --current --namespace=default
+
+kubectl api-resources --namespaced=true
+kubectl api-resources --namespaced=false
+
+#标签选择器
+#in notin exists
+kubectl get pods -l app=nginx,tier=frontend
+kubectl get pods -l 'environment in (dev,qa),tier in (frontend)'
+
+#字段选择器
+#https://kubernetes.io/zh/docs/concepts/overview/working-with-objects/field-selectors/
+kubectl get pods --field-selector status.phase=Running
+kubectl get ingress --field-selector 
+
+
+kubectl get statefulsets,services --all-naespaces --field-selector metadata.namespace!=default
+
+kubectl get node
+kubectl describe node name
+
+
+#更新标签 
+#更新所有app=nginx的pods tier为fe
+kubectl label pods -l app=nginx tier=fe
+# -l 根据label过滤, -L 显示tier的值
+kubectl get pods -l app=nginx -L tier
+
+#更新注解
+kubectl annotate pods my-nginx description="my frontend running nginx"
+
+#扩缩应用
+kubectl scale deployment/my-nginx --replicas=1
+#自动扩容和收缩,autoscale 和 scale 冲突的,autoscale优先级更高
+kubectl autoscale deployment/my-nginx --min=1 --max=3
+
+#HorizontalPodAutoscaler
+#查看autoscale创建的自动扩展
+kubectl get hpa
+#删除 autoscale 创建的nginx自动扩展
+kubectl delete hpa nginx
+#修改autoscale
+kubectl edit hpa nginx
+
