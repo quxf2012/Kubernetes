@@ -114,3 +114,22 @@ kubectl delete hpa nginx
 #修改autoscale
 kubectl edit hpa nginx
 
+#
+kubectl edit
+kubectl patch
+kubctl apply
+
+#破坏性更新  --force 先删除资源,再创建
+kubectl replace -f 
+
+
+
+#平滑更新,使用edit更改,k8s自动启动平滑更新,并非所有的改动都会触发更新
+kubectl edit deployment/nginx 
+
+
+#调试
+kubectl describe 
+kubectl get events
+kubectl get ....   -o yaml
+kubectl get nodes -o yaml
